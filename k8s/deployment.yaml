@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: flutter-gabriel
-        image: flutter-app
+        image: flutterapp
         # resources:
         #   limits:
         #     memory: "128Mi"

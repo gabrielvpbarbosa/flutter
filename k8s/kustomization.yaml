@@ -4,6 +4,6 @@ resources:
   - "deployment.yaml"
 namespace: teste-flutter
 images: 
-- name: flutter-app
-  newName: gabrielbarbosa23/teste-argocd
+- name: flutterapp
+  newName: flutterapp
   newTag: v1
