@@ -43,3 +43,8 @@ jobs:
       
       - name: push
         uses: ad-m/github-push-action@master
+        with:
+          username: gabrielbarbosa23 # login registry dockerhub
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          repository: gabrielbarbosa23/teste-argocd
+          tags: ${{ github.sha }}
