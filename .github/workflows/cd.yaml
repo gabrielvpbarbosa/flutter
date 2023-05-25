@@ -1,0 +1,45 @@
+name: Pipeline
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    name: Build
+    runs-on: self-hosted
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: build image and push to docker hub
+        uses: docker/build-push-action@v1.1.0
+        with:
+          username: gabrielbarbosa23 # login registry dockerhub
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          repository: gabrielbarbosa23/teste-argocd
+          tags: ${{ github.sha }}
+  deploy:
+    name: Deploy
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: kustomize
+        uses: imranismail/setup-kustomize@v1
+        with:
+          kustomize_version: v3.6.1
+
+      - name: Update k8s
+        run: |
+          cd k8s
+          kustomize edit set image flutter-app=gabrielbarbosa23/teste-argocd:${{ github.sha }}
+      
+      - name: commit
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Deploy actions"
+          git commit -am "change image tag"
+      
+      - name: push
+        uses: ad-m/github-push-action@master
