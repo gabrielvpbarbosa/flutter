@@ -41,9 +41,9 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "Deploy actions"
           git commit -am "change image tag"
-          git push
+
       
-      # - name: push
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PASSWORD }}
