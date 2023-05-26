@@ -34,7 +34,8 @@ RUN git config --global --add safe.directory /opt/flutter
 # RUN flutter packages get
 # RUN flutter packages upgrade
 RUN flutter pub get
-RUN flutter build web --dart-define=ENVIRONMENT=DEV
+RUN flutter build web
+# RUN flutter build web --dart-define=ENVIRONMENT=DEV
 #RUN flutter config --enable-web
 
 FROM nginx
