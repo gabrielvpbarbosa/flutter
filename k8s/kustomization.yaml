@@ -6,4 +6,4 @@ namespace: teste-flutter
 images:
 - name: flutterapp
   newName: gabrielbarbosa23/teste-argocd
-  newTag: 3ea841c30eb1c1467065fc0ab0a39d3b450169cf
+  newTag: e80f0a26f2927323b44fedb06a257fb53cc840a1
